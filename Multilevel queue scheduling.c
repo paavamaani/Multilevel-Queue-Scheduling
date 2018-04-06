@@ -14,10 +14,7 @@ int process[limit],arrival_time[limit],burst_time[limit],bursttime[limit],queue_
 printf("Enter time quantum in multiples of two\n");
 scanf("%d",&time_quantum);
 
-if((time_quantum%2)!=0) {
-        printf("Time quantum entered is not in multiples of two\n");
-        return;
-}
+
 
 for(int j=0;j<limit;j++) {
 
