@@ -47,8 +47,8 @@ while(count<total_time){
                 if( (arrival_time[j]==0 && burst_time[j]>0 && queue_number[j]==0) || (arrival_time[j]<=count && burst_time[j]>0 && queue_number[j]==0) ) {
                                 if(burst_time[j]!=1) {
 
-                               		 burst_time[j]=burst_time[j]-time_quantum;
-                               		 count=count+time_quantum;
+                               		 	burst_time[j]=burst_time[j]-time_quantum;
+                               		 	count=count+time_quantum;
 
                		                 if(burst_time[j]==0 || burst_time[j]<0) {
 
