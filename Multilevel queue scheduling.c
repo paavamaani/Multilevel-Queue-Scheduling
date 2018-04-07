@@ -38,7 +38,7 @@ for(int j=0;j<limit;j++) {
         bursttime[j]=burst_time[j];
 }
 
-
+printf("\n\n\n\n");
 
 while(count<total_time){
 
