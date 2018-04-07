@@ -30,7 +30,7 @@ for(int j=0;j<limit;j++) {
         printf("Enter process %d burst time\n",j+1);
         scanf("%d",&burst_time[j]);
 
-        printf("Enter process %d queue number\n",j+1);
+        printf("Enter process %d priority\n",j+1);
         scanf("%d",&queue_number[j]);
 
         total_time=total_time+burst_time[j];
@@ -44,26 +44,25 @@ while(count<total_time){
 
         for(int j=0;j<limit;j++) {
 
-                if( (arrival_time[j]==0 && burst_time[j]>0 && queue_number[j]==1) || (arrival_time[j]<=count && burst_time[j]>0 && queue_number[j]==1) ) {
-						if(burst_time[j]!=1) {
+                if( (arrival_time[j]==0 && burst_time[j]>0 && queue_number[j]==0) || (arrival_time[j]<=count && burst_time[j]>0 && queue_number[j]==0) ) {
+                                if(burst_time[j]!=1) {
 
-                                burst_time[j]=burst_time[j]-time_quantum;
-                                count=count+time_quantum;
+                               		 burst_time[j]=burst_time[j]-time_quantum;
+                               		 count=count+time_quantum;
 
-                                if(burst_time[j]==0 || burst_time[j]<0) {
+               		                 if(burst_time[j]==0 || burst_time[j]<0) {
 
-                                        turnaround_time[j]=count-arrival_time[j];
-                                        waiting_time[j]=turnaround_time[j]-bursttime[j];
-
-                                        printf("Process with process id %d has finished with turnaround time %d and waiting time %d\n\n",process[j],turnaround_time[j],waiting_time[j]);
-
-                                }
-                        }
+                        	                turnaround_time[j]=count-arrival_time[j];
+                                	        waiting_time[j]=turnaround_time[j]-bursttime[j];
+					
+						printf("Process with process id %d has finished with turnaround time %d and waiting time %d\n\n",process[j],turnaround_time[j],waiting_time[j]);
+					 }
+                        	}
 
                         else if(burst_time[j]==1) {
 
-                                burst_time[j]=burst_time[j]+(time_quantum-(time_quantum+1));
-                                count=count+(time_quantum-(time_quantum-1));
+                                	burst_time[j]=burst_time[j]+(time_quantum-(time_quantum+1));
+                                	count=count+(time_quantum-(time_quantum-1));
 
                                 if(burst_time[j]==0) {
 
@@ -73,13 +72,13 @@ while(count<total_time){
                                         printf("Process with process id %d has finished with turnaround time %d and waiting time %d\n\n",process[j],turnaround_time[j],waiting_time[j]);
 
                                 }
-				        }
-				}
-        }
+                         }
+                  }
+          }
 
         for(int j=0;j<limit;j++) {
 
-                if(arrival_time[j]<=count && queue_number[j]==2 && burst_time[j]>0) {
+                if(arrival_time[j]<=count && queue_number[j]==1 && burst_time[j]>0) {
 
                         int x=1;
 
@@ -87,7 +86,7 @@ while(count<total_time){
 
                                 for(int i=0;i<limit;i++) {
 
-                                        if(arrival_time[i]<=count && burst_time[i]>0 && queue_number[i]==1) {
+                                        if(arrival_time[i]<=count && burst_time[i]>0 && queue_number[i]==0) {
 
                                                 x=0;
 
@@ -103,15 +102,14 @@ while(count<total_time){
 
                                                  if(burst_time[j]==0 || burst_time[j]<0) {
 
-														turnaround_time[j]=count-arrival_time[j];
+                                                        turnaround_time[j]=count-arrival_time[j];
                                                         waiting_time[j]=turnaround_time[j]-bursttime[j];
 
                                                         printf("Process with process id %d has finished with turnaround time %d and waiting time %d\n\n",process[j],turnaround_time[j],waiting_time[j]);
 
                                                 }
                                         }
-
-                                        else if(burst_time[j]==1) {
+  				else if(burst_time[j]==1) {
 
                                                 burst_time[j]=burst_time[j]+(time_quantum-(time_quantum+1));
                                                 count=count+(time_quantum-(time_quantum-1));
@@ -128,13 +126,16 @@ while(count<total_time){
                                  }
                          }
                 }
-
-        }
+	}
 }
-for(int i=0;i<limit;i++) {
+
+        for(int i=0;i<limit;i++) {
+
                 avg_turnaround_time=avg_turnaround_time+turnaround_time[i];
                 avg_waiting_time=avg_waiting_time+waiting_time[i];
         }
-        printf("Average turnaround time is %f\n\nAverage waiting time is %f\n\n",(avg_turnaround_time/limit),(avg_waiting_time/limit));
+
+                printf("Average turnaround time is %f\n\nAverage waiting time is %f\n\n",(avg_turnaround_time/limit),(avg_waiting_time/limit));
 
 }
+
